@@ -3,7 +3,7 @@ defmodule Sap.Mixfile do
 
   def project do
     [app: :sap,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -45,7 +45,7 @@ defmodule Sap.Mixfile do
 
   defp package do
     %{licenses: ["MIT"],
-      contributors: ["Shane Logsdon"],
+      maintainers: ["Shane Logsdon"],
       links: %{"GitHub" => "https://github.com/slogsdon/sap"}}
   end
 end

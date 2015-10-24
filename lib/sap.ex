@@ -95,7 +95,7 @@ defmodule Sap do
     end
 
     adapter = adapter_opts[:adapter] || Plug.Adapters.Cowboy
-    adapter_opts = adapter_opts |> Keyword.remove(:adapter)
+    adapter_opts = adapter_opts |> Keyword.delete(:adapter)
 
     case opts[:scheme] || :http do
       :http -> adapter.http __MODULE__, opts, adapter_opts
