@@ -90,15 +90,8 @@ defmodule Sap.Combinators do
   response body.
   """
   @spec ok :: combinator
-  def ok do
-    fn conn ->
-      conn
-      |> put_status(200)
-      |> new
-    end
-  end
   @spec ok(String.t) :: combinator
-  def ok(resp) do
+  def ok(resp \\ nil) do
     fn conn ->
       conn
       |> put_status(200)
