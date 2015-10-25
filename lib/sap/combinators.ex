@@ -62,14 +62,17 @@ defmodule Sap.Combinators do
     |> Enum.filter(fn x -> x != "" end)
   end
 
-  @doc """
-  Only permits HTTP GET requests in the rest of a node's definition.
-  """
-  @spec get :: combinator
-  def get do
-    fn
-      %{method: "GET"} = conn -> new(conn)
-      conn -> new(conn) |> error
+  for verb <- [:get, :post, :put, :patch, :delete, :options, :connect, :trace] do
+    str = verb |> to_string |> String.upcase
+    @doc """
+    Only permits HTTP #{str} requests in the rest of a node's definition.
+    """
+    @spec unquote({verb, [], nil}) :: combinator
+    def unquote({verb, [], nil}) do
+      fn
+        %{method: unquote(str)} = conn -> new(conn)
+        conn -> new(conn) |> error
+      end
     end
   end
 
