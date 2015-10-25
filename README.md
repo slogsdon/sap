@@ -6,6 +6,8 @@
 
 Sap is a toolkit for Plug applications to accept and respond to HTTP requests by using a decision tree built with combinators.
 
+> **Warning!** Sap is still in progress. The combinators that are available now will work in an application if you were to create one, but this library could use a lot of optimizations. The eventual goal is to minimize any performance hit to as close to 0% as possible.
+
 ## Inspiration
 
 This may look familiar to experienced functional programmers. [Suave](http://suave.io) from F# and other similar libraries contain a set of combinators to manipulate route flow and task composition.
