@@ -32,8 +32,8 @@ defmodule Sap do
       def app do
         choose [
           get ~>> resp_json ~>> choose [
-            path("/body2") ~>> ok("{\"data\": \"body 2\"}"),
-            path("/body1") ~>> ok("{\"data\": \"body 1\"}")
+            path("/body2") ~>> ok("{\\"data\\": \\"body 2\\"}"),
+            path("/body1") ~>> ok("{\\"data\\": \\"body 1\\"}")
             ]
           ]
       end
