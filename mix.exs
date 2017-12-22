@@ -7,11 +7,11 @@ defmodule Sap.Mixfile do
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
+     deps: deps(),
      name: "Sap",
      docs: [source_url: "https://github.com/slogsdon/sap"],
-     package: package,
-     description: description,
+     package: package(),
+     description: description(),
      test_coverage: [tool: ExCoveralls],
      preferred_cli_env: [coveralls: :test]]
   end
@@ -23,16 +23,16 @@ defmodule Sap.Mixfile do
 
   defp deps do
     [
-      {:plug, "~> 1.0"},
+      {:plug, "~> 1.4"},
       {:control, "~> 0.0"},
 
-      {:earmark, "~> 0.1", only: :docs},
-      {:ex_doc, "~> 0.10", only: :docs},
-      {:inch_ex, only: :docs},
+      {:earmark, "~> 1.0", only: :dev},
+      {:ex_doc, "~> 0.18", only: :dev},
+      {:inch_ex, "~> 0.5", only: :dev},
 
-      {:excoveralls, "~> 0.4", only: :test},
+      {:excoveralls, "~> 0.7", only: :test},
       {:dialyze, "~> 0.2", only: :test},
-      {:dogma, "~> 0.0", only: :test},
+      {:dogma, "~> 0.1", only: :test},
     ]
   end
 

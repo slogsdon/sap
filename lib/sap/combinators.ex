@@ -57,7 +57,7 @@ defmodule Sap.Combinators do
 
   defp compile_path(path) do
     path
-    |> String.strip(?/)
+    |> String.trim("/")
     |> String.split("/")
     |> Enum.filter(fn x -> x != "" end)
   end

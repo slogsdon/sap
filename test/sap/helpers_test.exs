@@ -6,7 +6,7 @@ defmodule Sap.HelpersTest do
 
   test "~>>" do
     conn = conn(:get, "/")
-    app = get ~>> path("/") ~>> ok("ok")
+    app = get() ~>> path("/") ~>> ok("ok")
     resp = Sap.call(conn, app: app)
 
     assert resp.status == 200

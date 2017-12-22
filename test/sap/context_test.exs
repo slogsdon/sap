@@ -23,7 +23,7 @@ defmodule Sap.ContextTest do
 
   test "bind :error" do
     conn = conn(:post, "/")
-    app = get ~>> ok("ok")
+    app = get() ~>> ok("ok")
     resp = Sap.call(conn, app: app)
 
     refute resp.status == 200
@@ -32,7 +32,7 @@ defmodule Sap.ContextTest do
 
   test "bind :ok" do
     conn = conn(:get, "/")
-    app = get ~>> path("/") ~>> ok("ok")
+    app = get() ~>> path("/") ~>> ok("ok")
     resp = Sap.call(conn, app: app)
 
     assert resp.status == 200

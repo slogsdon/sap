@@ -22,7 +22,7 @@ defmodule SapTest do
   end
 
   test "init" do
-    f = fn -> end
+    f = fn -> :ok end
     assert Sap.init([]) == []
     assert Sap.init([app: f]) == [app: f]
   end

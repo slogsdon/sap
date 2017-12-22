@@ -13,7 +13,7 @@ defmodule Sap.CombinatorsTest do
 
   test "choose no match" do
     conn = conn(:post, "/")
-    resp = choose([get]).(conn)
+    resp = choose([get()]).(conn)
 
     assert resp.status == :error
     assert resp.conn == conn
@@ -59,19 +59,19 @@ defmodule Sap.CombinatorsTest do
 
   test "get no match" do
     conn1 = conn(:post, "/")
-    resp1 = get.(conn1)
+    resp1 = get().(conn1)
 
     assert resp1.status == :error
     assert resp1.conn == conn1
 
     conn2 = conn(:put, "/")
-    resp2 = get.(conn2)
+    resp2 = get().(conn2)
 
     assert resp2.status == :error
     assert resp2.conn == conn2
 
     conn3 = conn(:delete, "/")
-    resp3 = get.(conn3)
+    resp3 = get().(conn3)
 
     assert resp3.status == :error
     assert resp3.conn == conn3
@@ -79,7 +79,7 @@ defmodule Sap.CombinatorsTest do
 
   test "get match" do
     conn = conn(:get, "/")
-    resp = get.(conn)
+    resp = get().(conn)
 
     assert resp.status == :ok
     assert resp.conn == conn
@@ -87,7 +87,7 @@ defmodule Sap.CombinatorsTest do
 
   test "resp_json" do
     conn = conn(:get, "/")
-    resp = resp_json.(conn)
+    resp = resp_json().(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
@@ -97,7 +97,7 @@ defmodule Sap.CombinatorsTest do
 
   test "ok without body" do
     conn = conn(:get, "/")
-    resp = ok.(conn)
+    resp = ok().(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
