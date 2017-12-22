@@ -38,7 +38,7 @@ defmodule Sap do
           ]
       end
 
-      Sap.start(app: app)
+      Sap.serve(app: app)
       # or Plug.Adapters.Cowboy.http Sap, [app: app], []
 
   A few combinators are used, both filtering and building, to define our
