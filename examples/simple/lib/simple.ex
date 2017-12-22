@@ -24,7 +24,8 @@ defmodule Simple do
       get() ~>> resp_json() ~>> choose([
         path("/body2") ~>> ok("{\"data\": \"body 2\"}"),
         path("/body1") ~>> ok("{\"data\": \"body 1\"}")
-        ])
-      ]
+      ]),
+      not_found()
+    ]
   end
 end

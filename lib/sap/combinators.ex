@@ -89,20 +89,26 @@ defmodule Sap.Combinators do
   Sets the response status code of `200 Ok` and, if present, the given
   response body.
   """
-  @spec ok :: combinator
-  def ok do
+  @spec ok(String.t) :: combinator
+  def ok(resp \\ nil) do
     fn conn ->
       conn
       |> put_status(200)
+      |> Map.put(:resp_body, resp || "")
       |> new
     end
   end
-  @spec ok(String.t) :: combinator
-  def ok(resp) do
+
+  @doc """
+  Sets the response status code of `404 Not Found` and, if present, the
+  given response body.
+  """
+  @spec not_found(String.t) :: combinator
+  def not_found(resp \\ nil) do
     fn conn ->
       conn
-      |> put_status(200)
-      |> Map.put(:resp_body, resp)
+      |> put_status(404)
+      |> Map.put(:resp_body, resp || "")
       |> new
     end
   end
