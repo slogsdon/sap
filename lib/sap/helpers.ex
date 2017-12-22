@@ -4,6 +4,8 @@ defmodule Sap.Helpers do
   tree.
   """
 
+  @compile {:inline, ~>>: 2}
+
   @doc """
   Allows for stringing combinators together
   """
