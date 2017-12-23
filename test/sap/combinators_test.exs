@@ -2,7 +2,7 @@ defmodule Sap.CombinatorsTest do
   use ExUnit.Case, async: true
   use Plug.Test
   import Sap.Combinators.ControlFlow
-  import Sap.Combinators.Error
+  import Sap.Combinators.ClientError
   import Sap.Combinators.Http
   import Sap.Combinators.Response
   import Sap.Combinators.Success

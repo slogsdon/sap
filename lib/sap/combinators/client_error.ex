@@ -1,4 +1,4 @@
-defmodule Sap.Combinators.Error do
+defmodule Sap.Combinators.ClientError do
   @moduledoc """
 
   """
