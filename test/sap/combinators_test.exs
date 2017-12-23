@@ -2,7 +2,6 @@ defmodule Sap.CombinatorsTest do
   use ExUnit.Case, async: true
   use Plug.Test
   import Sap.Combinators.ControlFlow
-  import Sap.Combinators.ClientError
   import Sap.Combinators.Http
   import Sap.Combinators.Response
   import Sap.Combinators.Success
@@ -97,26 +96,6 @@ defmodule Sap.CombinatorsTest do
     refute resp.conn == conn
     assert resp.conn |> get_resp_header("content-type")
       == ["application/json; charset=utf-8"]
-  end
-
-  test "not_found without body" do
-    conn = conn(:get, "/")
-    resp = not_found().(conn)
-
-    assert resp.status == :ok
-    refute resp.conn == conn
-    assert resp.conn.status == 404
-    assert resp.conn.resp_body == ""
-  end
-
-  test "not_found with body" do
-    conn = conn(:get, "/")
-    resp = not_found("not found").(conn)
-
-    assert resp.status == :ok
-    refute resp.conn == conn
-    assert resp.conn.status == 404
-    assert resp.conn.resp_body == "not found"
   end
 
   test "set_user_data" do
