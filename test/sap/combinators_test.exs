@@ -99,26 +99,6 @@ defmodule Sap.CombinatorsTest do
       == ["application/json; charset=utf-8"]
   end
 
-  test "ok without body" do
-    conn = conn(:get, "/")
-    resp = ok().(conn)
-
-    assert resp.status == :ok
-    refute resp.conn == conn
-    assert resp.conn.status == 200
-    assert resp.conn.resp_body == ""
-  end
-
-  test "ok with body" do
-    conn = conn(:get, "/")
-    resp = ok("ok").(conn)
-
-    assert resp.status == :ok
-    refute resp.conn == conn
-    assert resp.conn.status == 200
-    assert resp.conn.resp_body == "ok"
-  end
-
   test "not_found without body" do
     conn = conn(:get, "/")
     resp = not_found().(conn)
