@@ -4,6 +4,8 @@ defmodule Sap.Helpers do
   tree.
   """
 
+  import Control.Monad
+
   @compile {:inline, ~>>: 2}
 
   @doc """
@@ -13,7 +15,7 @@ defmodule Sap.Helpers do
     fn conn ->
       conn
       |> left.()
-      |> Control.Monad.bind(right)
+      |> bind(right)
     end
   end
 end

@@ -1,7 +1,11 @@
 defmodule Sap.CombinatorsTest do
   use ExUnit.Case, async: true
   use Plug.Test
-  import Sap.Combinators
+  import Sap.Combinators.ControlFlow
+  import Sap.Combinators.Error
+  import Sap.Combinators.Http
+  import Sap.Combinators.Response
+  import Sap.Combinators.Success
 
   test "choose empty list" do
     conn = conn(:get, "/")
@@ -85,14 +89,14 @@ defmodule Sap.CombinatorsTest do
     assert resp.conn == conn
   end
 
-  test "resp_json" do
+  test "json" do
     conn = conn(:get, "/")
-    resp = resp_json().(conn)
+    resp = json().(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
     assert resp.conn |> get_resp_header("content-type")
-      == ["application/json"]
+      == ["application/json; charset=utf-8"]
   end
 
   test "ok without body" do
@@ -102,7 +106,7 @@ defmodule Sap.CombinatorsTest do
     assert resp.status == :ok
     refute resp.conn == conn
     assert resp.conn.status == 200
-    assert resp.conn.resp_body == nil
+    assert resp.conn.resp_body == ""
   end
 
   test "ok with body" do
@@ -113,5 +117,34 @@ defmodule Sap.CombinatorsTest do
     refute resp.conn == conn
     assert resp.conn.status == 200
     assert resp.conn.resp_body == "ok"
+  end
+
+  test "not_found without body" do
+    conn = conn(:get, "/")
+    resp = not_found().(conn)
+
+    assert resp.status == :ok
+    refute resp.conn == conn
+    assert resp.conn.status == 404
+    assert resp.conn.resp_body == ""
+  end
+
+  test "not_found with body" do
+    conn = conn(:get, "/")
+    resp = not_found("not found").(conn)
+
+    assert resp.status == :ok
+    refute resp.conn == conn
+    assert resp.conn.status == 404
+    assert resp.conn.resp_body == "not found"
+  end
+
+  test "set_user_data" do
+    conn = conn(:get, "/")
+    resp = set_user_data(:foo, "bar").(conn)
+
+    assert resp.status == :ok
+    refute resp.conn == conn
+    assert resp.conn.private.foo == "bar"
   end
 end

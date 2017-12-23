@@ -1,7 +1,9 @@
 defmodule Sap.HelpersTest do
   use ExUnit.Case, async: true
   use Plug.Test
-  import Sap.Combinators
+  import Sap.Combinators.ControlFlow
+  import Sap.Combinators.Http
+  import Sap.Combinators.Success
   import Sap.Helpers
 
   test "~>>" do

@@ -13,7 +13,11 @@ defmodule Sap.Mixfile do
      package: package(),
      description: description(),
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: [coveralls: :test]]
+     preferred_cli_env: [
+       coveralls: :test,
+       credo: :test,
+       dialyze: :test,
+       dogma: :test]]
   end
 
   def application do
@@ -33,6 +37,7 @@ defmodule Sap.Mixfile do
       {:excoveralls, "~> 0.7", only: :test},
       {:dialyze, "~> 0.2", only: :test},
       {:dogma, "~> 0.1", only: :test},
+      {:credo, "~> 0.8", only: :test},
     ]
   end
 

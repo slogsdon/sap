@@ -31,11 +31,11 @@ defmodule Sap do
 
       def app do
         choose [
-          get ~>> resp_json ~>> choose [
+          get() ~>> resp_json() ~>> choose([
             path("/body2") ~>> ok("{\\"data\\": \\"body 2\\"}"),
             path("/body1") ~>> ok("{\\"data\\": \\"body 1\\"}")
-            ]
-          ]
+          ])
+        ]
       end
 
       Sap.serve(app: app)
@@ -67,6 +67,7 @@ defmodule Sap do
 
   use Application
   alias Sap.Context, as: C
+  import Plug.Conn
 
   @behaviour Plug
 
@@ -112,15 +113,17 @@ defmodule Sap do
   def call(conn, opts) do
     app = opts[:app]
 
-    case app.(conn) do
-      %C{status: :error} ->
-        conn
-        |> Plug.Conn.resp(400, "Bad Request")
-      context ->
-        context.conn
-        |> Map.put(:state, :set)
-    end
-    |> Plug.Conn.send_resp
+    conn
+    |> app.()
+    |> handle_error(conn)
+    |> send_resp
+  end
+
+  defp handle_error(%C{status: :error}, conn) do
+    resp(conn, 400, "Bad Request")
+  end
+  defp handle_error(context, _conn) do
+    Map.put(context.conn, :state, :set)
   end
 
   # Application callback
