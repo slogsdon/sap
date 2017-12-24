@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.ControlFlow do
   @moduledoc """
-
+  Request filters for controlling how a Sap decision tree finds a success path
   """
 
   import Sap.Context, only: [new: 1, error: 1]

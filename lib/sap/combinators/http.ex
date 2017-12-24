@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.Http do
   @moduledoc """
-
+  Request filters for HTTP semantics
   """
 
   import Sap.Context, only: [new: 1, error: 1]

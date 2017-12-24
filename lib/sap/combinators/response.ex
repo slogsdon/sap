@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.Response do
   @moduledoc """
-
+  General responsehelpers
   """
 
   import Plug.Conn

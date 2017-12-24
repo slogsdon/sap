@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.ClientError do
   @moduledoc """
-
+  Error responses caused by client behavior
   """
 
   import Sap.Combinators.Response

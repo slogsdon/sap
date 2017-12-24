@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.Success do
   @moduledoc """
-
+  Success responses
   """
 
   import Sap.Combinators.Response

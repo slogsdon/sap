@@ -1,6 +1,6 @@
 defmodule Sap.Combinators.Redirect do
   @moduledoc """
-
+  Redirect responses
   """
 
   import Sap.Combinators.Response
