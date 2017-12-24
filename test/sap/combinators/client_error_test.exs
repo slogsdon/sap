@@ -315,7 +315,9 @@ defmodule Sap.Combinators.ClientErrorTest do
 
   test "requested_range_not_satisfiable with body" do
     conn = conn(:get, "/")
-    resp = requested_range_not_satisfiable("requested_range_not_satisfiable").(conn)
+    resp = requested_range_not_satisfiable(
+      "requested_range_not_satisfiable"
+    ).(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
@@ -415,7 +417,9 @@ defmodule Sap.Combinators.ClientErrorTest do
 
   test "request_header_fields_too_large with body" do
     conn = conn(:get, "/")
-    resp = request_header_fields_too_large("request_header_fields_too_large").(conn)
+    resp = request_header_fields_too_large(
+      "request_header_fields_too_large"
+    ).(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
@@ -435,12 +439,13 @@ defmodule Sap.Combinators.ClientErrorTest do
 
   test "unavailable_for_legal_reasons with body" do
     conn = conn(:get, "/")
-    resp = unavailable_for_legal_reasons("unavailable_for_legal_reasons").(conn)
+    resp = unavailable_for_legal_reasons(
+      "unavailable_for_legal_reasons"
+    ).(conn)
 
     assert resp.status == :ok
     refute resp.conn == conn
     assert resp.conn.status == 451
     assert resp.conn.resp_body == "unavailable_for_legal_reasons"
   end
-
 end
