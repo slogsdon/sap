@@ -1,3 +1,5 @@
+> **[shane.logsdon.io](https://shane.logsdon.io)** — writing and projects on agentic workflows, web standards, and payments engineering.
+
 # Sap
 [![Build Status](https://img.shields.io/travis/slogsdon/sap.svg?style=flat)](https://travis-ci.org/slogsdon/sap)
 [![Coverage Status](https://img.shields.io/coveralls/slogsdon/sap.svg?style=flat)](https://coveralls.io/r/slogsdon/sap)
